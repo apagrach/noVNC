@@ -20,15 +20,14 @@ for opt, arg in opts:
 	elif opt in ("-p"):
 		port=arg
 
-d  = open("/home/adam/noVNC/device.txt","r+")
-dev = d.readlines()
+path = "/home/adam/noVNC/"+hmi.strip("\n")+"_PID.txt"
 
 cmd=['exec /home/adam/noVNC/utils/launch.sh --vnc ' + hmi + " --listen "+port]
 proc = subprocess.Popen(cmd,shell=True,preexec_fn=os.setsid)
-f = open("/home/adam/noVNC/PID.txt", "a+")
+f = open(path, "a+")
 f.write(hmi.strip("\n") +" "+str(proc.pid) + '\n')
 f.close()
 print proc.pid
 
-d.close()
-#line_prepender("/home/adam/noVNC/PID.txt","c")
+
+line_prepender(path,"c")
