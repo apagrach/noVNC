@@ -3,6 +3,7 @@ import os
 import types
 import traceback
 import subprocess
+import getopt
 
 def line_prepender(filename, line):
     with open(filename, 'r+') as f:
@@ -10,22 +11,24 @@ def line_prepender(filename, line):
         f.seek(0, 0)
         f.write(line.rstrip('\r\n') + '\n' + content)
 
-HMI = ''
-opts, args = getopt.getopt(argv,"h:",["hmi="])
-for opt, arg in opts:
-      opt in ("-h", "--hmi"):
-         HMI = arg
-print HMI
 
+
+opts, args = getopt.getopt(sys.argv[1:],"h:p:")
+for opt, arg in opts:
+	if opt in ("-h"):
+		hmi= arg
+	elif opt in ("-p"):
+		port=arg
+
+d  = open("/home/adam/noVNC/device.txt","r+")
 dev = d.readlines()
 
-for  ip in dev:
+cmd=['exec /home/adam/noVNC/utils/launch.sh --vnc ' + hmi + " --listen "+port]
+proc = subprocess.Popen(cmd,shell=True,preexec_fn=os.setsid)
+f = open("/home/adam/noVNC/PID.txt", "a+")
+f.write(hmi.strip("\n") +" "+str(proc.pid) + '\n')
+f.close()
+print proc.pid
 
-	cmd=['exec /home/adam/noVNC/utils/launch.sh --vnc ' + ip]
-	proc = subprocess.Popen(cmd,shell=True,preexec_fn=os.setsid)
-	f = open("/home/adam/noVNC/PID.txt", "a+")
-	f.write(str(proc.pid) + '\n')
-	f.close()
-	print proc.pid
-
-line_prepender("/home/adam/noVNC/PID.txt","c")
+d.close()
+#line_prepender("/home/adam/noVNC/PID.txt","c")
