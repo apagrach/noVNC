@@ -10,9 +10,10 @@ def line_prepender(filename, line):
         f.seek(0, 0)
         f.write(line.rstrip('\r\n') + '\n' + content)
 
+
 d  = open("/home/adam/noVNC/device.txt","r+")
 dev = d.readlines()
-line_prepender("/home/adam/noVNC/PID.txt","C")
+
 for  ip in dev:
 
 	cmd=['exec /home/adam/noVNC/utils/launch.sh --vnc ' + ip]
@@ -22,3 +23,4 @@ for  ip in dev:
 	f.close()
 	print proc.pid
 
+line_prepender("/home/adam/noVNC/PID.txt","c")

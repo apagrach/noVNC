@@ -10,8 +10,9 @@ line = f.readlines()
 flag = 0
 f.seek(0)
 for w in line:
-	if w !='c'and flag != 0:
+	if flag != 0:
         	f.write(w)
+		print(w)
 	flag +=1
 f.truncate()
 f.close
@@ -24,8 +25,9 @@ if 'c\n' not in line:
 			os.kill(int(x),15)
 		except:
 			print("Error")
-	try:
- 		f.write('empty')
-	except OSError:
- 		pass
-f.close()
+	f.close()	
+	os.remove("/home/adam/noVNC/PID.txt")
+try:
+	f.close()
+except:
+	pass
