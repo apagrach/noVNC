@@ -304,7 +304,7 @@ select:active {
 
   background-color: rgb(110, 132, 163);
   border-radius: 0 10px 10px 0;
-
+  visibility:hidden;
 }
 #noVNC_control_bar.noVNC_open {
   box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.5);
@@ -321,6 +321,7 @@ select:active {
   transition: box-shadow 0.5s ease-in-out;
 }
 #noVNC_control_bar.noVNC_open::before {
+  visibility:hidden;
   box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.5);
 }
 .noVNC_right #noVNC_control_bar {
@@ -328,6 +329,7 @@ select:active {
   border-radius: 10px 0 0 10px;
 }
 .noVNC_right #noVNC_control_bar.noVNC_open {
+  visibility:hidden;
   left: 0;
 }
 .noVNC_right #noVNC_control_bar::before {
@@ -349,6 +351,7 @@ select:active {
   background-repeat: no-repeat;
   background-position: right;
   box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.5);
+  visibility:hidden;
 }
 #noVNC_control_bar_handle:after {
   content: "";
@@ -358,6 +361,7 @@ select:active {
   top: 22px; /* (50px-6px)/2 */
   right: 5px;
   width: 5px;
+  visibility:hidden;
   height: 6px;
 }
 #noVNC_control_bar.noVNC_open #noVNC_control_bar_handle:after {
