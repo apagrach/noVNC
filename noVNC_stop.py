@@ -3,6 +3,7 @@ import os
 import types
 import traceback
 import subprocess
+import getopt
 
 opts, args = getopt.getopt(sys.argv[1:],"h:p:")
 for opt, arg in opts:

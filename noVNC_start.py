@@ -25,7 +25,7 @@ path = "/home/adam/noVNC/"+hmi.strip("\n")+"_PID.txt"
 cmd=['exec /home/adam/noVNC/utils/launch.sh --vnc ' + hmi + " --listen "+port]
 proc = subprocess.Popen(cmd,shell=True,preexec_fn=os.setsid)
 f = open(path, "a+")
-f.write(hmi.strip("\n") +" "+str(proc.pid) + '\n')
+f.write(str(proc.pid) + '\n')
 f.close()
 print proc.pid
 
