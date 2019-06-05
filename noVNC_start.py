@@ -10,8 +10,13 @@ def line_prepender(filename, line):
         f.seek(0, 0)
         f.write(line.rstrip('\r\n') + '\n' + content)
 
+HMI = ''
+opts, args = getopt.getopt(argv,"h:",["hmi="])
+for opt, arg in opts:
+      opt in ("-h", "--hmi"):
+         HMI = arg
+print HMI
 
-d  = open("/home/adam/noVNC/device.txt","r+")
 dev = d.readlines()
 
 for  ip in dev:
