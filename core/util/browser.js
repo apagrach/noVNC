@@ -20,7 +20,7 @@ window.addEventListener('touchstart', function onFirstTouch() {
     window.removeEventListener('touchstart', onFirstTouch, false);
 }, false);
 
-
+isTouchDevice = false;
 // The goal is to find a certain physical width, the devicePixelRatio
 // brings us a bit closer but is not optimal.
 export let dragThreshold = 10 * (window.devicePixelRatio || 1);
