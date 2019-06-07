@@ -8,17 +8,18 @@
 
 import * as Log from './logging.js';
 
+export let isTouchDevice = false
 // Touch detection
-export let isTouchDevice = ('ontouchstart' in document.documentElement) ||
-                                 // requried for Chrome debugger
-                                 (document.ontouchstart !== undefined) ||
-                                 // required for MS Surface
-                                 (navigator.maxTouchPoints > 0) ||
-                                 (navigator.msMaxTouchPoints > 0);
-window.addEventListener('touchstart', function onFirstTouch() {
-    isTouchDevice = true;
-    window.removeEventListener('touchstart', onFirstTouch, false);
-}, false);
+// export let isTouchDevice = ('ontouchstart' in document.documentElement) ||
+//                                  // requried for Chrome debugger
+//                                  (document.ontouchstart !== undefined) ||
+//                                  // required for MS Surface
+//                                  (navigator.maxTouchPoints > 0) ||
+//                                  (navigator.msMaxTouchPoints > 0);
+// window.addEventListener('touchstart', function onFirstTouch() {
+//     isTouchDevice = true;
+//     window.removeEventListener('touchstart', onFirstTouch, false);
+// }, false);
 
 // The goal is to find a certain physical width, the devicePixelRatio
 // brings us a bit closer but is not optimal.
