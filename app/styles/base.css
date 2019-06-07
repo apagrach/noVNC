@@ -689,6 +689,7 @@ select:active {
 
 #noVNC_status.noVNC_status_normal {
   background: rgba(128,128,128,0.9);
+    visibility: hidden;
 }
 #noVNC_status.noVNC_status_normal::before {
   content: url("../images/info.svg") " ";
