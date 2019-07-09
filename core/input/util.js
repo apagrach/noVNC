@@ -104,7 +104,7 @@ export function getKey(evt) {
 
         // IE and Edge have broken handling of AltGraph so we cannot
         // trust them for printable characters
-        if ((evt.key.length !== 1) {//|| (!browser.isIE() && !browser.isEdge())) {
+        if ((evt.key.length !== 1) || (!browser.isIE() && !browser.isEdge())) {
             return evt.key;
         }
     }
