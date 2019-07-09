@@ -10,7 +10,7 @@ export function getKeycode(evt) {
     // (unfortunately Firefox and Chrome are crappy here and gives
     // us an empty string on some platforms, rather than leaving it
     // undefined)
-    console.error('TEST_PRINT\n');
+
     if (evt.code) {
         // Mozilla isn't fully in sync with the spec yet
         switch (evt.code) {
@@ -86,7 +86,9 @@ export function getKey(evt) {
             case 'Multiply': return '*';
             case 'Subtract': return '-';
             case 'Add': return '+';
+            case 'a' : return 'a';
             case 'Decimal': return evt.char;
+
         }
 
         // Mozilla isn't fully in sync with the spec yet
