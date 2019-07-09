@@ -42,13 +42,14 @@ export default class Keyboard {
     _sendKeyEvent(keysym, code, down) {
         if (down) {
             this._keyDownList[code] = keysym;
-        } else {
-            // Do we really think this key is down?
-            if (!(code in this._keyDownList)) {
-                return;
-            }
-            delete this._keyDownList[code];
-        }
+        } 
+        // else {
+        //     // Do we really think this key is down?
+        //     if (!(code in this._keyDownList)) {
+        //         return;
+        //     }
+        //     delete this._keyDownList[code];
+        // }
 
         Log.Debug("onkeyevent " + (down ? "down" : "up") +
                   ", keysym: " + keysym, ", code: " + code);
