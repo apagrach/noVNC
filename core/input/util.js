@@ -10,6 +10,7 @@ export function getKeycode(evt) {
     // (unfortunately Firefox and Chrome are crappy here and gives
     // us an empty string on some platforms, rather than leaving it
     // undefined)
+    console.error('TEST_PRINT\n');
     if (evt.code) {
         // Mozilla isn't fully in sync with the spec yet
         switch (evt.code) {
