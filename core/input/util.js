@@ -17,7 +17,7 @@ export function getKeycode(evt) {
             case 'OSLeft': return 'MetaLeft';
             case 'OSRight': return 'MetaRight';
         }
-
+        console.log(evt.code);
         return evt.code;
     }
 
@@ -78,7 +78,7 @@ export function getKey(evt) {
             case 'Win': return 'Meta';
             case 'Apps': return 'ContextMenu';
             case 'Up': return 'ArrowUp';
-            case 'Left': return 'ArrowUp';
+            case 'Left': return 'ArrowLeft';
             case 'Right': return 'ArrowRight';
             case 'Down': return 'ArrowDown';
             case 'Del': return 'Delete';
