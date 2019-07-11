@@ -78,7 +78,7 @@ export function getKey(evt) {
             case 'Win': return 'Meta';
             case 'Apps': return 'ContextMenu';
             case 'Up': return 'ArrowUp';
-            case 'Left': return 'ArrowLeft';
+            case 'Left': return 'ArrowUp';
             case 'Right': return 'ArrowRight';
             case 'Down': return 'ArrowDown';
             case 'Del': return 'Delete';
