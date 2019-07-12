@@ -97,12 +97,13 @@ export default class Mouse {
         Log.Debug("onmousebutton " + (down ? "down" : "up") +
                   ", x: " + pos.x + ", y: " + pos.y + ", bmask: " + bmask);
         this.onmousebutton(pos.x, pos.y, down, bmask);
-
+	console.log('mouse');
         stopEvent(e);
     }
 
     _handleMouseDown(e) {
         // Touch events have implicit capture
+        console.error('mouse');
         if (e.type === "mousedown") {
             setCapture(this._target);
         }

@@ -17,6 +17,7 @@ export function getKeycode(evt) {
             case 'OSLeft': return 'MetaLeft';
             case 'OSRight': return 'MetaRight';
         }
+        console.log('line 20  getKeycode');
         console.log(evt.code);
         return evt.code;
     }
@@ -71,6 +72,8 @@ export function getKey(evt) {
     if (evt.key !== undefined) {
         // IE and Edge use some ancient version of the spec
         // https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/8860571/
+        console.log('util.js lin 75 ')
+        console.log(evt.key.toString())
         switch (evt.key) {
             case 'Spacebar': return ' ';
             case 'Esc': return 'Escape';
@@ -114,16 +117,23 @@ export function getKey(evt) {
 
     // Try to deduce it based on the physical key
     const code = getKeycode(evt);
+    console.log('line 117  raw Code');
+    console.log(code);
     if (code in fixedkeys) {
+
         return fixedkeys[code];
     }
 
     // If that failed, then see if we have a printable character
     if (evt.charCode) {
+        console.log('line 124  charCode');
+        console.log(evt.charCode);
+
         return String.fromCharCode(evt.charCode);
     }
 
     // At this point we have nothing left to go on
+    console.log('line 129 Unidentified');
     return 'Unidentified';
 }
 
@@ -155,6 +165,7 @@ export function getKeysym(evt) {
 
     // Special key? (FIXME: Should have been caught earlier)
     if (key.length !== 1) {
+        console.log('return Null utill.js line 166')
         return null;
     }
 
@@ -162,6 +173,6 @@ export function getKeysym(evt) {
     if (codepoint) {
         return keysyms.lookup(codepoint);
     }
-
+    console.log('return Null utill.js line 173')
     return null;
 }

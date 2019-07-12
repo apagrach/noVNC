@@ -20,3 +20,47 @@ def eventDispatched2(event):
 tk = Toolkit.getDefaultToolkit()
 tk.addAWTEventListener(eventDispatched2, AWTEvent.MOUSE_MOTION_EVENT_MASK)
 tk.addAWTEventListener(eventDispatched1, AWTEvent.MOUSE_MOTION_EVENT_MASK)
+
+
+
+
+save_windows
+
+for window in system.gui.getOpenedWindows():
+	if window.getPath() == 'HMI':
+		Q = "UPDATE USR_HMI_DATA_LINK SET xpos=? , ypos= ? WHERE HMI_DATA_id=? and USR_id=?; "
+		usr_id = system.db.runScalarPrepQuery("SELECT USR.id FROM USR WHERE USR.name = ?",[system.security.getUsername()],"ADAM_TEST")
+		HMI_DATA_id = system.db.runScalarPrepQuery("SELECT HMI_DATA.id FROM HMI_DATA WHERE HMI_DATA.HMI = ?",[window.getRootContainer().HMI],"ADAM_TEST")
+		a = [window.getX(),window.getY(),HMI_DATA_id,usr_id]
+		system.db.runPrepUpdate(Q,a,"ADAM_TEST")
+		system.nav.closeWindow(window)
+
+
+
+open_saved
+
+Q = "SELECT * FROM USR_HMI_DATA_LINK WHERE USR_HMI_DATA_LINK.USR_id = ? and USR_HMI_DATA_LINK.page=?"
+overviewWin=system.gui.getWindow('OVERVIEW')
+page =overviewWin.getRootContainer().getComponent('pages').selectedStringValue
+usr_id = system.db.runScalarPrepQuery("SELECT USR.id FROM USR WHERE USR.name = ?",[system.security.getUsername()],"ADAM_TEST")
+
+a = [usr_id,page]
+
+#print "test"
+for x in system.db.runPrepQuery(Q,a,"ADAM_TEST"):
+	HMI_DATA_id = x['HMI_DATA_id']
+	HMI = system.db.runScalarPrepQuery("SELECT HMI_DATA.HMI FROM HMI_DATA WHERE HMI_DATA.id = ?",[HMI_DATA_id],"ADAM_TEST")
+#	print HMI_DATA_id,HMI
+	window = system.nav.openWindowInstance('HMI', {'HMI':HMI,'SAVEABLE':1})
+	Q = "SELECT * FROM USR_HMI_DATA_LINK WHERE HMI_DATA_id=? and USR_id=?"
+#	usr_id = system.db.runScalarPrepQuery("SELECT USR.id FROM USR WHERE USR.name = ?",[system.security.getUsername()],"ADAM_TEST")
+#	HMI_DATA_id = system.db.runScalarPrepQuery("SELECT HMI_DATA.id FROM HMI_DATA WHERE HMI_DATA.HMI = ?",[window.getRootContainer().HMI],"ADAM_TEST")
+	a = [HMI_DATA_id,usr_id]
+	pos = system.db.runPrepQuery(Q,a,"ADAM_TEST")
+	xp=pos[0]['xpos']
+	yp=pos[0]['ypos']
+	width=pos[0]['width']
+	height=pos[0]['height']
+	window.setBounds(xp, yp,width,height) 
+	
+	
