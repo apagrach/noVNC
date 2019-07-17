@@ -51,7 +51,7 @@ export default class Keyboard {
         //     delete this._keyDownList[code];
         // }
 
-        Log.Debug("onkeyevent " + (down ? "down" : "up") +
+        console.log("onkeyevent " + (down ? "down" : "up") +
                   ", keysym: " + keysym, ", code: " + code);
         this.onkeyevent(keysym, code, down);
     }
