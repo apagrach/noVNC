@@ -74,6 +74,7 @@ export function getKey(evt) {
         // https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/8860571/
         console.log('util.js lin 75 ');
         console.log(evt.key);
+        console.log(evt.char);
         switch (evt.key) {
             case 'Spacebar': return ' ';
             case 'Esc': return 'Escape';
@@ -91,6 +92,8 @@ export function getKey(evt) {
             case 'Add': return '+';
             case 'a' : return 'a';
             case 'Decimal': return evt.char;
+            console.log('Reached line 95 util.js ');
+
 
         }
 
