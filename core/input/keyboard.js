@@ -93,7 +93,7 @@ export default class Keyboard {
         const code = this._getKeyCode(e);
         let keysym = KeyboardUtil.getKeysym(e);
         console.log('line 100 keyboard js');
-        console.log(e.keysym.toString())
+        //console.log(e.keysym
         //console.log(keysym.toString());
        // console.log(code.toString());
 
