@@ -73,7 +73,7 @@ export function getKey(evt) {
         // IE and Edge use some ancient version of the spec
         // https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/8860571/
         console.log('util.js lin 75 ');
-        console.log(evt.char);
+        console.log(evt.key);
         switch (evt.key) {
             case 'Spacebar': return ' ';
             case 'Esc': return 'Escape';
