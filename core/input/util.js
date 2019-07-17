@@ -72,8 +72,8 @@ export function getKey(evt) {
     if (evt.key !== undefined) {
         // IE and Edge use some ancient version of the spec
         // https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/8860571/
-        console.log('util.js lin 75 ')
-        console.log(evt.key.toString())
+        console.log('util.js lin 75 ');
+        console.log(evt.char);
         switch (evt.key) {
             case 'Spacebar': return ' ';
             case 'Esc': return 'Escape';
