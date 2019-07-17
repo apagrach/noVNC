@@ -93,7 +93,7 @@ export default class Keyboard {
         const code = this._getKeyCode(e);
         let keysym = KeyboardUtil.getKeysym(e);
         console.log('line 100 keyboard js');
-        console.log(e.toString())
+        console.log(e.keysym.toString())
         //console.log(keysym.toString());
        // console.log(code.toString());
 
@@ -202,6 +202,7 @@ export default class Keyboard {
         }
 
         this._sendKeyEvent(keysym, code, true);
+        console.log('line 205 keyboard js');
     }
 
     // Legacy event for browsers without code/key
