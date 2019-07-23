@@ -24,7 +24,7 @@ CREATE TABLE USR_HMI_DATA_LINK
 		HMI_DATA_id int not null,
 	)
 CREATE UNIQUE INDEX ui_USR_HMI_DATA_LINK_USR_id_HMI_DATA_id
-ON USR_HMI_DATA_LINK (USR_id,HMI_DATA_id,page)
+ON USR_HMI_DATA_LINK (USR_id,HMI_DATA_id,page_id)
 
 ALTER TABLE USR_HMI_DATA_LINK
 ADD xpos int not null 
@@ -42,8 +42,8 @@ CREATE TABLE page
 		id int IDENTITY(1,1) PRIMARY KEY,
 		title varchar(30) not null,
 	)
-CREATE UNIQUE INDEX ui_page_title
-ON page (title)
+CREATE UNIQUE INDEX ui_page_title_USR_ID
+ON page (title,USR_id)
 -----------------
 --Foreign Keys--
 -----------------
@@ -56,9 +56,12 @@ ADD CONSTRAINT fk_USR_id__USR_HMI_DATA_LINK__USR_id
 FOREIGN KEY (USR_id) REFERENCES USR(id) ON DELETE CASCADE
 
 ALTER TABLE USR_HMI_DATA_LINK
-ADD CONSTRAINT fk_page__USR_HMI_DATA_LINK__title
-FOREIGN KEY (page) REFERENCES page(title) ON DELETE CASCADE
+ADD CONSTRAINT fk_page_id__USR_HMI_DATA_LINK__page_id
+FOREIGN KEY (page_id) REFERENCES page(id) ON DELETE CASCADE
 
+ALTER TABLE page
+ADD CONSTRAINT fk_USR_id__page__USR_id
+FOREIGN KEY (USR_id) REFERENCES USR(id)
 
 ------------
 -- Insert --
