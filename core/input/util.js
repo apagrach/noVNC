@@ -91,6 +91,7 @@ export function getKey(evt) {
             case 'Subtract': return '-';
             case 'Add': return '+';
             case 'a' : return 'a';
+            console.log('Reached line 95 util.js ');
             case 'Decimal': return evt.char;
             
 
