@@ -72,9 +72,9 @@ export function getKey(evt) {
     if (evt.key !== undefined) {
         // IE and Edge use some ancient version of the spec
         // https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/8860571/
-        console.log('util.js lin 75 ');
-        console.log(evt.key);
-        console.log(evt.char);
+       //console.log('util.js lin 75 ');
+       console.log('Line 76 util.js event.key: '+ evt.key);
+       // console.log(evt.char);
         switch (evt.key) {
             case 'Spacebar': return ' ';
             case 'Esc': return 'Escape';
@@ -90,8 +90,8 @@ export function getKey(evt) {
             case 'Multiply': return '*';
             case 'Subtract': return '-';
             case 'Add': return '+';
-            case 'a' : return 'a';
-            console.log('Reached line 95 util.js ');
+            case 'KeyA' : return 'a';
+            //console.log('Reached line 95 util.js ');
             case 'Decimal': return evt.char;
             
 
@@ -114,37 +114,38 @@ export function getKey(evt) {
 
         // IE and Edge have broken handling of AltGraph so we cannot
         // trust them for printable characters
-        if ((evt.key.length !== 1) || (!browser.isIE() && !browser.isEdge())) {
-            return evt.key;
-        }
+        // 
+        // if (!browser.isIgn() ) {
+        //     console.log('Line 118 util.js event.key: '+ evt.key + ' evt.char :' + evt.char);
+        //     return evt.key;
+        // }
     }
 
     // Try to deduce it based on the physical key
     const code = getKeycode(evt);
-    console.log('line 117  raw Code');
-    console.log(code);
+    console.log('line 117  raw Code: '+ code);
     if (code in fixedkeys) {
-
+        console.log('line 128  charCode');
         return fixedkeys[code];
     }
 
     // If that failed, then see if we have a printable character
     if (evt.charCode) {
-        console.log('line 124  charCode');
-        console.log(evt.charCode);
+       console.log('line 124  charCode');
+       console.log(evt.charCode);
 
         return String.fromCharCode(evt.charCode);
     }
 
     // At this point we have nothing left to go on
-    console.log('line 129 Unidentified');
+   console.log('line 140 Unidentified');
     return 'Unidentified';
 }
 
 // Get the most reliable keysym value we can get from a key event
 export function getKeysym(evt) {
     const key = getKey(evt);
-
+    console.log('line 147 util.js key: '+ key);
     if (key === 'Unidentified') {
         return null;
     }
@@ -169,7 +170,7 @@ export function getKeysym(evt) {
 
     // Special key? (FIXME: Should have been caught earlier)
     if (key.length !== 1) {
-        console.log('return Null utill.js line 166')
+       // console.log('return Null utill.js line 166')
         return null;
     }
 
@@ -177,6 +178,6 @@ export function getKeysym(evt) {
     if (codepoint) {
         return keysyms.lookup(codepoint);
     }
-    console.log('return Null utill.js line 173')
+    //console.log('return Null utill.js line 173')
     return null;
 }

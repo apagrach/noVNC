@@ -126,5 +126,4 @@ export default {
     'AudioVolumeMute':  'AudioVolumeMute',
     'AudioVolumeUp':    'AudioVolumeUp',
     'WakeUp':           'WakeUp',
-    'KeyA':                'a',
 };

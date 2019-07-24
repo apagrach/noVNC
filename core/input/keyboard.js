@@ -59,6 +59,7 @@ export default class Keyboard {
     _getKeyCode(e) {
         const code = KeyboardUtil.getKeycode(e);
         if (code !== 'Unidentified') {
+            console.log("key code lin 62 keyboad.js : " + code);
             return code;
         }
 
@@ -92,8 +93,8 @@ export default class Keyboard {
     _handleKeyDown(e) {
         const code = this._getKeyCode(e);
         let keysym = KeyboardUtil.getKeysym(e);
-        console.log('line 100 keyboard js');
-        //console.log(e.keysym
+        console.log('_handleKeyDown event');
+        console.log(keysym)
         //console.log(keysym.toString());
        // console.log(code.toString());
 
@@ -130,11 +131,13 @@ export default class Keyboard {
                 // If it's a virtual keyboard then it should be
                 // sufficient to just send press and release right
                 // after each other
+                console.log('return line 133 keyboard.js');
                 this._sendKeyEvent(keysym, code, true);
                 this._sendKeyEvent(keysym, code, false);
             }
 
             stopEvent(e);
+            console.log('return line 139 keyboard.js');
             return;
         }
 
@@ -180,12 +183,15 @@ export default class Keyboard {
         // a keypress event as well
         // (IE and Edge has a broken KeyboardEvent.key, so we can't
         // just check for the presence of that field)
+
         if (!keysym && (!e.key || browser.isIE() || browser.isEdge())) {
             this._pendingKey = code;
             // However we might not get a keypress event if the key
             // is non-printable, which needs some special fallback
             // handling
             setTimeout(this._handleKeyPressTimeout.bind(this), 10, e);
+            console.log('return line 191 keyboard.js');
+            console.log('keysym: '  + keysym + ' e.key: '+ e.key)
             return;
         }
 
@@ -264,7 +270,7 @@ export default class Keyboard {
             // Unknown, give up
             keysym = 0;
         }
-
+        console.log('line 271 keyboard.js')
         this._sendKeyEvent(keysym, code, true);
     }
 
@@ -298,11 +304,11 @@ export default class Keyboard {
     }
 
     _allKeysUp() {
-        Log.Debug(">> Keyboard.allKeysUp");
+        //Log.Debug(">> Keyboard.allKeysUp");
         for (let code in this._keyDownList) {
             this._sendKeyEvent(this._keyDownList[code], code, false);
         }
-        Log.Debug("<< Keyboard.allKeysUp");
+        //Log.Debug("<< Keyboard.allKeysUp");
     }
 
     // Firefox Alt workaround, see below
