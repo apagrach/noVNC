@@ -848,7 +848,7 @@ export default class RFB extends EventTargetMixin {
             return false;
         }
         if (!browser.isIgn()){
-            reason = "Unauthorized access from unsuported browser";
+            let reason = "Unauthorized access from unsuported browser";
              this.dispatchEvent(new CustomEvent(
                 "securityfailure",
                 { detail: { status: this._security_status,
