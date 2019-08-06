@@ -89,6 +89,6 @@ export function isFirefox() {
     return navigator && !!(/firefox/i).exec(navigator.userAgent);
 }
 export function isIgn() {
-    // console.log(navigator.userAgent)
-    // return navigator && navigator.userAgent.indexOf('IGN') !== -1;
+    console.log(navigator.userAgent)
+    return navigator && navigator.userAgent.indexOf('IGN') !== -1;
 }
