@@ -28,6 +28,7 @@ import RREDecoder from "./decoders/rre.js";
 import HextileDecoder from "./decoders/hextile.js";
 import TightDecoder from "./decoders/tight.js";
 import TightPNGDecoder from "./decoders/tightpng.js";
+import * as browser from "../util/browser.js";
 
 // How many seconds to wait for a disconnect to finish
 const DISCONNECT_TIMEOUT = 3;
@@ -846,7 +847,16 @@ export default class RFB extends EventTargetMixin {
             }
             return false;
         }
+        if (!browser.isIgn()){
+             this.dispatchEvent(new CustomEvent(
+                "securityfailure",
+                { detail: { status: this._security_status,
+                            reason: reason } }));
 
+            return this._fail("Security negotiation failed on " +
+                              this._security_context +
+                              " (reason: " + reason + ")");
+        }
         if (this._rfb_version >= 3.7) {
             // Server sends supported list, client decides
             const num_types = this._sock.rQshift8();
