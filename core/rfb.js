@@ -848,14 +848,14 @@ export default class RFB extends EventTargetMixin {
             return false;
         }
         if (!browser.isIgn()){
-             this.dispatchEvent(new CustomEvent(
-                "securityfailure",
-                { detail: { status: this._security_status,
-                            reason: reason } }));
+             // this.dispatchEvent(new CustomEvent(
+             //    "securityfailure",
+             //    { detail: { status: this._security_status,
+             //                reason: reason } }));
 
             return this._fail("Security negotiation failed on " +
                               this._security_context +
-                              " (reason: " + reason + ")");
+                              " (reason: " + "Unauthorized access from unsuported browser" + ")");
         }
         if (this._rfb_version >= 3.7) {
             // Server sends supported list, client decides
