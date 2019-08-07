@@ -85,10 +85,10 @@ export function isEdge() {
 }
 
 export function isFirefox() {
-    // console.log(navigator.userAgent)
+   
     return navigator && !!(/firefox/i).exec(navigator.userAgent);
 }
 export function isIgn() {
-    console.log(navigator.userAgent)
+   
     return navigator && navigator.userAgent.indexOf('IGN') !== -1;
 }

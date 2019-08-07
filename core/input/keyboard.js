@@ -59,7 +59,6 @@ export default class Keyboard {
     _getKeyCode(e) {
         const code = KeyboardUtil.getKeycode(e);
         if (code !== 'Unidentified') {
-            console.log("key code lin 62 keyboad.js : " + code);
             return code;
         }
 
@@ -93,11 +92,7 @@ export default class Keyboard {
     _handleKeyDown(e) {
         const code = this._getKeyCode(e);
         let keysym = KeyboardUtil.getKeysym(e);
-        console.log('_handleKeyDown event');
-        console.log(keysym)
-        //console.log(keysym.toString());
-       // console.log(code.toString());
-
+       
         // Windows doesn't have a proper AltGr, but handles it using
         // fake Ctrl+Alt. However the remote end might not be Windows,
         // so we need to merge those in to a single AltGr event. We
@@ -131,13 +126,12 @@ export default class Keyboard {
                 // If it's a virtual keyboard then it should be
                 // sufficient to just send press and release right
                 // after each other
-                console.log('return line 133 keyboard.js');
                 this._sendKeyEvent(keysym, code, true);
                 this._sendKeyEvent(keysym, code, false);
             }
 
             stopEvent(e);
-            console.log('return line 139 keyboard.js');
+            
             return;
         }
 
@@ -190,8 +184,6 @@ export default class Keyboard {
             // is non-printable, which needs some special fallback
             // handling
             setTimeout(this._handleKeyPressTimeout.bind(this), 10, e);
-            console.log('return line 191 keyboard.js');
-            console.log('keysym: '  + keysym + ' e.key: '+ e.key)
             return;
         }
 
@@ -208,7 +200,7 @@ export default class Keyboard {
         }
 
         this._sendKeyEvent(keysym, code, true);
-        console.log('line 205 keyboard js');
+        
     }
 
     // Legacy event for browsers without code/key
@@ -270,7 +262,6 @@ export default class Keyboard {
             // Unknown, give up
             keysym = 0;
         }
-        console.log('line 271 keyboard.js')
         this._sendKeyEvent(keysym, code, true);
     }
 
